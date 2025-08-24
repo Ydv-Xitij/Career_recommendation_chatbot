@@ -91,7 +91,6 @@ User Profile:
 
 Resume Content:
 {resume_text if resume_text else "No resume uploaded"}
-
 """
 
     try:
@@ -137,10 +136,11 @@ if user_input and user_input.strip():
     # ✅ Log chat
     try:
         log_chat(user_input, bot_reply, st.session_state["profile_skills"], st.session_state["profile_interests"])
+        st.success("✅ Chat saved to Google Sheets!")
     except Exception as e:
         st.error(f"⚠️ Logging failed: {e}")
 
-# ✅ Display ALL chat messages
+# ✅ Display ALL chat messages (FIX: Show full history every time)
 with st.container():
     for msg in st.session_state["messages"]:
         with st.chat_message(msg["role"]):
@@ -164,6 +164,7 @@ if st.sidebar.button("📥 Export Chat"):
     st.sidebar.download_button("Download Chat", data=chat_text, file_name="chat_history.txt")
 
 st.sidebar.caption("🔒 Your data is private and not shared externally.")
+
 
 
 
