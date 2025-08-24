@@ -1,7 +1,7 @@
 import pandas as pd
 import os
 
-file_path = "data/careers.csv"
+file_path = "CareerPath/data/career_data.csv"
 
 if not os.path.exists(file_path) or os.stat(file_path).st_size == 0:
     raise FileNotFoundError(f"{file_path} is missing or empty. Please add data.")
@@ -56,6 +56,7 @@ def recommend(profile):
 
     scores = sorted(scores, key=lambda x: x[2], reverse=True)[:5]
     return scores
+
 
 
 
